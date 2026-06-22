@@ -1,11 +1,23 @@
-import { Text, View } from "react-native";
-import '../styles/global.css'
+import { Text, View, ScrollView } from "react-native";
+import "../styles/global.css";
+import { Header } from '../components/header'
+import { SectionMain } from '../components/sectionMain'
+
+import Constants from 'expo-constants'
+
+const statusBaeHeight = Constants.statusBarHeight
 
 export default function Index() {
   return (
-    <View
+    <ScrollView
+      style={{ flex: 1 }}
+      className="bg-white"
+      showsVerticalScrollIndicator={false}
     >
-      <Text className="text-red-500 font-bold">Defenility Hello World ha ha haa</Text>
-    </View>
+      <View className="w-full" style={{ marginTop: statusBaeHeight + 8}}>
+        <Header/>
+        <SectionMain/>
+      </View>
+    </ScrollView>
   );
 }

@@ -1,23 +1,20 @@
-import { View, Text, Pressable } from 'react-native'
-import { Ionicons, Feather} from '@expo/vector-icons'
-import React from 'react'
+import { Text, View } from "react-native";
 
 export function Header() {
   return (
-    <View className='w-full h-40 bg-blue-600 p-4'>
-        <Text className='text-white font-bold text-2xl'>
-            DISTRIBUIDORA ANDROMEDA
-        </Text>
-        <Text className='text-white font-medium text-lg mt-10'>
-            Loja: Jardim Satelite
-        </Text>
-        <Text className='text-white font-light'>
-            Avenida Andromeda, 3940, Jd. Satelite
-        </Text>
-        {/* <Pressable>
-            <Ionicons name='menu' size={20} color="#121212"></Ionicons>
-        </Pressable> */}
-    </View>
-  )
-}
+    <View className="w-full bg-blue-600 px-4 py-5">
+      <Text className="text-2xl font-bold text-white">
+        DISTRIBUIDORA ANDRÔMEDA
+      </Text>
 
+      <View className="mt-8">
+        <Text className="text-lg font-medium text-white">
+          Loja: Jardim Satélite
+        </Text>
+        <Text className="font-light text-white">
+          Avenida Andrômeda, 3940, Jd. Satélite
+        </Text>
+      </View>
+    </View>
+  );
+}

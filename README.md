@@ -1,50 +1,211 @@
-# Welcome to your Expo app 👋
+# 📦 Sistema de Gerenciamento de Estoque - Mobile App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicativo mobile desenvolvido com React Native para gerenciamento de estoque, movimentações de produtos e controle operacional entre caminhão, estoque e loja.
 
-## Get started
+Este projeto faz parte do **Protocolo 0100**, utilizando uma arquitetura moderna baseada em:
 
-1. Install dependencies
+* React Native
+* TypeScript
+* Expo
+* React Navigation
+* Node.js + Express (API separada)
+* PostgreSQL
+* Prisma ORM
 
-   ```bash
-   npm install
-   ```
+---
 
-2. Start the app
+# 📋 Visão Geral
 
-   ```bash
-   npx expo start
-   ```
+O objetivo da aplicação é fornecer uma solução simples, rápida e escalável para controle de estoque em dispositivos móveis.
 
-In the output, you'll find options to open the app in a
+O fluxo principal da aplicação é:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```text
+Caminhão (gerenciado pela fabrica)
+    ↓
+Estoque (gerenciado pelo app)
+    ↓
+Loja (gerenciado pelo app)
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+# 🚀 Tecnologias Utilizadas
 
-To learn more about developing your project with Expo, look at the following resources:
+## Mobile
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+* React Native
+* Expo
+* TypeScript
+* React Navigation
+* React Hook Form
+* Context API
 
-## Join the community
+## Backend
 
-Join our community of developers creating universal apps.
+Este projeto consome uma API independente desenvolvida em:
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+* Node.js
+* Express
+* TypeScript
+* PostgreSQL
+* Prisma ORM
+
+---
+
+# 🔄 Fluxo de Negócio
+
+## Produtos cadastrados
+
+Permite gerenciar a quantidade de produtos disponíveis para movimentação.
+
+Informações básicas:
+
+* Nome
+* Código
+* Quantidade
+* Data de validade
+
+## Movimentações
+
+Cada alteração no estoque gera automaticamente um registro de movimentação.
+
+Tipos suportados:
+
+* Entrada
+* Saída
+* Transferência
+
+Informações registradas:
+
+* Produto
+* Quantidade
+* Tipo da movimentação
+* Data
+
+---
+
+# 🔗 Integração com API
+
+A comunicação com o backend é realizada através do Axios.
+
+Exemplo:
+
+```ts
+import axios from "axios";
+
+export const api = axios.create({
+  baseURL: "http://SEU_IP:3000",
+});
+```
+
+---
+
+# ⚙️ Instalação
+
+## Clonar o repositório
+
+```bash
+git clone https://github.com/seu-usuario/estoque-mobile.git
+```
+
+```bash
+cd estoque-mobile
+```
+
+## Instalar dependências
+
+```bash
+npm install
+```
+
+ou
+
+```bash
+yarn
+```
+
+## Executar o projeto
+
+```bash
+npx expo start
+```
+
+---
+
+# 🌎 Configuração da API
+
+Crie um arquivo `.env` na raiz do projeto:
+
+```env
+EXPO_PUBLIC_API_URL=http://192.168.0.100:3000
+```
+
+---
+
+# 📱 MVP v1
+
+Funcionalidades previstas para a primeira versão (Em criação):
+
+* Listagem de produtos
+* Consulta de estoque
+* Entrada de estoque
+* Saída de estoque
+* Histórico de movimentações
+* Integração com API REST
+
+---
+
+# 🔒 Regras de Negócio
+
+* Não permitir estoque negativo.
+* Toda movimentação deve ser registrada.
+* Quantidades devem ser validadas antes do envio.
+* Produtos inexistentes não podem ser movimentados.
+* O aplicativo deve refletir sempre o estado atual do estoque armazenado na API.
+
+---
+
+# 🏗️ Arquitetura
+
+A aplicação segue princípios de separação de responsabilidades:
+
+```text
+Screens
+    ↓
+Services
+    ↓
+API REST
+    ↓
+Controller
+    ↓
+Service
+    ↓
+Repository
+    ↓
+Database
+```
+
+---
+
+# 📈 Evolução Futura
+
+Funcionalidades planejadas:
+
+* Autenticação JWT
+* Controle de usuários
+* Controle de permissões
+* Scanner de código de barras
+* Dashboard gerencial
+* Relatórios PDF
+* Modo offline
+* Sincronização automática
+* Notificações em tempo real
+
+---
+
+# 👨‍💻 Autor
+
+**Leonardo Cassemiro Ribeiro**
+
+Projeto criado para estudos, evolução profissional e aplicação prática de arquitetura mobile integrada com APIs modernas.

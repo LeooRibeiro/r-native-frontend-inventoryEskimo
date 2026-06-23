@@ -1,9 +1,19 @@
+import { router } from "expo-router";
 import { Text, View } from "react-native";
 
 import { operations } from "../../data/operations";
 import { Card } from "../ui/card";
 
 export function SectionMain() {
+  function handleOperationPress(operationId: string) {
+    if (operationId === "cold-room") {
+      router.push("/cold-room");
+      return;
+    }
+
+    console.log(operationId);
+  }
+
   return (
     <View className="w-full p-4">
       <Text className="text-sm font-bold text-gray-500">OPERAÇÕES</Text>
@@ -17,7 +27,7 @@ export function SectionMain() {
             icon={operation.icon}
             iconColor={operation.iconColor}
             iconBackgroundColor={operation.iconBackgroundColor}
-            onPress={() => console.log(operation.id)}
+            onPress={() => handleOperationPress(operation.id)}
           />
         ))}
       </View>

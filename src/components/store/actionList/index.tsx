@@ -3,8 +3,8 @@ import { Text, View } from "react-native";
 import { getOperationActions } from "../../../data/operations";
 import { Card } from "../../ui/card";
 
-export function ColdRoomActionList() {
-  const actions = getOperationActions("cold-room");
+export function StoreActionList() {
+  const actions = getOperationActions("store");
 
   return (
     <View className="mt-6">

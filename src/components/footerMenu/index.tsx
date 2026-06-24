@@ -15,16 +15,7 @@ const menuItems: MenuItem[] = [
     label: "Início",
     icon: Home,
     href: "/",
-  },
-  {
-    label: "Estoque",
-    icon: ClipboardList,
-    href: "/cold-room",
-  },
-  {
-    label: "Documentos",
-    icon: FileText,
-  },
+  }
 ];
 
 export function FooterMenu() {

@@ -1,13 +1,19 @@
 import { router } from "expo-router";
+import type { Href } from "expo-router";
 import { Text, View } from "react-native";
 
-import { operations } from "../../data/operations";
+import { operations, type OperationId } from "../../data/operations";
 import { Card } from "../ui/card";
 
 export function SectionMain() {
-  function handleOperationPress(operationId: string) {
+  function handleOperationPress(operationId: OperationId) {
     if (operationId === "cold-room") {
-      router.push("/cold-room");
+      router.push("/cold-room" as Href);
+      return;
+    }
+
+    if (operationId === "store") {
+      router.push("/store" as Href);
       return;
     }
 

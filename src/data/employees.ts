@@ -25,8 +25,8 @@ const employees: Employee[] = [
     id: "employee-3",
     name: "Carla Mendes",
     role: "Caixa",
-    clockedInAt: null,
-    isClockedIn: false,
+    clockedInAt: "13:45",
+    isClockedIn: true,
   },
 ];
 

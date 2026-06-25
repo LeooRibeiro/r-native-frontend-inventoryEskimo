@@ -8,12 +8,17 @@ import { Card } from "../ui/card";
 export function SectionMain() {
   function handleOperationPress(operationId: OperationId) {
     if (operationId === "cold-room") {
-      router.push("/cold-room" as Href);
+      router.push("/coldRoomPage" as Href);
       return;
     }
 
     if (operationId === "store") {
-      router.push("/store" as Href);
+      router.push("/storePage" as Href);
+      return;
+    }
+
+    if (operationId === "documents") {
+      router.push("/documentsPage" as Href);
       return;
     }
 

@@ -1,11 +1,11 @@
 import { Text, View } from "react-native";
 
 import { AppScreen } from "../../components/layout/appScreen";
-import { StoreActionList } from "../../components/store/actionList";
-import { ActiveEmployeesPanel } from "../../components/store/activeEmployeesPanel";
+import { StoreActionList } from "../../components/storeRoom/actionList";
+import { ActiveEmployeesPanel } from "../../components/storeRoom/activeEmployeesPanel";
 import { getActiveEmployees } from "../../data/employees";
 
-export default function StorePage() {
+export default function StoreRoom() {
   const activeEmployees = getActiveEmployees();
 
   return (

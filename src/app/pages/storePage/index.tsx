@@ -1,9 +1,9 @@
 import { Text, View } from "react-native";
 
-import { AppScreen } from "../../components/layout/appScreen";
-import { StoreActionList } from "../../components/storeRoom/actionList";
-import { ActiveEmployeesPanel } from "../../components/storeRoom/activeEmployeesPanel";
-import { getActiveEmployees } from "../../data/employees";
+import { AppScreen } from "../../../components/layout/appScreen";
+import { StoreActionList } from "../../../components/storeRoom/actionList";
+import { ActiveEmployeesPanel } from "../../../components/storeRoom/activeEmployeesPanel";
+import { getActiveEmployees } from "../../../data/employees";
 
 export default function StoreRoom() {
   const activeEmployees = getActiveEmployees();

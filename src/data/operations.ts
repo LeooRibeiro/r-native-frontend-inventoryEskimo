@@ -21,6 +21,10 @@ export type OperationCard = {
 
 export type OperationAction = OperationCard;
 export type OperationId = "cold-room" | "store" | "documents";
+export type OperationSecundaryID = "supply-cold"
+export type OperationSecundary = OperationCard & {
+  id: OperationSecundaryID
+}
 export type Operation = OperationCard & {
   id: OperationId;
 };
@@ -51,6 +55,17 @@ export const operations: Operation[] = [
     iconBackgroundColor: "#fef9c3",
   },
 ];
+
+export const operationsSecundary : OperationSecundary[] = [
+  {  
+    id: "supply-cold",
+    title: "Gerar Documentos",
+    description: "Emissão de PDFs e relatórios",
+    icon: FileText,
+    iconColor: "#ca8a04",
+    iconBackgroundColor: "#fef9c3",
+  }
+]
 
 const operationActions: Partial<Record<OperationId, OperationAction[]>> = {
   "cold-room": [

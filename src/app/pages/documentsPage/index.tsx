@@ -1,8 +1,8 @@
 import { Text, View } from "react-native";
 
-import { DocumentsActionList } from "../../components/documentsRoom/actionList";
-import { DocumentationActions } from "../../components/documentsRoom/documentsActions";
-import { AppScreen } from "../../components/layout/appScreen";
+import { DocumentsActionList } from "../../../components/documentsRoom/actionList";
+import { DocumentationActions } from "../../../components/documentsRoom/documentsActions";
+import { AppScreen } from "../../../components/layout/appScreen";
 
 
 export default function DocumentsRoom() {

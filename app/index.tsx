@@ -14,7 +14,7 @@ export default function Homepage() {
     }
 
   return (
-        <View style={styles.container}>
+        <View style={ styles.container} className='bg-red-500'>
           <Text>
             HOME PAGE
           </Text>
@@ -26,7 +26,6 @@ export default function Homepage() {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "lightblue",
         flex: 1,
         justifyContent: "center",
         alignItems: "center"

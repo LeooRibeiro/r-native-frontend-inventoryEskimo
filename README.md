@@ -1,50 +1,129 @@
-# Welcome to your Expo app 👋
+# 📦 Inventory Eskimo
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Sistema de gerenciamento de estoque desenvolvido com foco em arquitetura escalável, boas práticas de desenvolvimento e experiência mobile.
 
-## Get started
+O projeto tem como objetivo controlar o fluxo de produtos entre diferentes setores, seguindo o fluxo de empresa -> caminhão -. loja
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## 🚀 Tecnologias
 
-2. Start the app
+### Mobile
+- React Native
+- TypeScript
+- Expo
 
-   ```bash
-   npx expo start
-   ```
+### Backend
+- Node.js
+- Express
+- TypeScript
 
-In the output, you'll find options to open the app in a
+### Banco de Dados
+- PostgreSQL
+- Prisma ORM
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 📱 Funcionalidades
 
-## Get a fresh project
+- Controle de estoque
+- Entrada de produtos
+- Saída de produtos
+- Transferência entre setores
+- Validação para impedir estoque negativo
+- Consulta rápida de estoque
+- Geração de documentos
 
-When you're ready, run:
+---
 
-```bash
-npm run reset-project
+## 🏗 Arquitetura
+
+O backend segue uma arquitetura em camadas:
+
+```
+Controller
+     │
+     ▼
+Service
+     │
+     ▼
+Repository
+     │
+     ▼
+Database (PostgreSQL)
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Cada camada possui responsabilidades bem definidas:
 
-## Learn more
+- **Controller** → Recebe as requisições HTTP.
+- **Service** → Contém as regras de negócio.
+- **Repository** → Responsável pela comunicação com o banco.
+- **Database** → Persistência dos dados.
 
-To learn more about developing your project with Expo, look at the following resources:
+---
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## 🔄 Fluxo de Estoque
 
-## Join the community
+```
+   Empresa
+      │
+      ▼
+     Loja
+      │
+      ▼
+   Estoque
+      │
+      ├────────► Loja
+      │
+      └────────► Câmara Fria
+```
 
-Join our community of developers creating universal apps.
+Toda movimentação gera um registro no histórico, podendo ser vista atravez da geração de documentos.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+
+## 🔒 Regras de Negócio
+
+- Não permitir estoque negativo.
+- Produtos inexistentes não podem receber movimentações.
+- Atualização automática da quantidade em estoque.
+- Histórico imutável das movimentações.
+
+---
+
+## 🌐 API REST
+
+### Produtos
+
+```
+GET /products
+POST /products
+PUT /products/:id
+DELETE /products/:id
+```
+---
+
+## 📈 Roadmap
+
+- [x] Prototipo do projeto
+- [x] Arquitetura
+- [x] Criação do ambiente PostgreeSQL/Node inicial
+- [ ] Criação do ambiente front-end inicial
+- [ ] Dashboard
+- [ ] Exportação de relatórios
+- [ ] Notificações
+- [ ] Testes automatizados
+
+---
+
+## 🎯 Objetivo
+
+Este projeto foi desenvolvido com motivação para resolver um problema de lojas locais da cidade e como aprendizado para aplicação de boas práticas no desenvolvimento Full Stack Mobile, utilizando uma arquitetura escalável e tecnologias amplamente utilizadas no mercado.
+
+---
+
+## 👨‍💻 Desenvolvedor
+
+**Leonardo Cassemiro Ribeiro**
+
+Projeto desenvolvido para fins de estudo, evolução profissional e portfólio.

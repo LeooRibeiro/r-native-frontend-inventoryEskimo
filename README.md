@@ -1,4 +1,4 @@
-# 📦 Inventory Eskimo
+# 📦 Inventory Manager
 
 Sistema de gerenciamento de estoque desenvolvido com foco em arquitetura escalável, boas práticas de desenvolvimento e experiência mobile.
 

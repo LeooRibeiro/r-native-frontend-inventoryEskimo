@@ -12,13 +12,14 @@ type mainContentProps = {
 
 const goToStore = () => router.push("/storeRoom");
 const goToColdRoom = () => router.push("/coldRoom");
+const goToDocumentRoom = () => router.push("/documentRoom");
 
 function mainContent({ title, children, style }: mainContentProps) {
   return (
     <View style={[styles.container, style]}>
       <Text style={styles.title}>{title}</Text>
       <CardButton
-        onPress={goToStore}
+        onPress={goToColdRoom}
         title={"CÂMARA FRIA"}
         subtitle={"Controle e movimentação de estoque refrigerado"}
         icon={Snowflake}
@@ -28,7 +29,7 @@ function mainContent({ title, children, style }: mainContentProps) {
         iconSize={30}
       />
       <CardButton
-        onPress={goToColdRoom}
+        onPress={goToStore}
         title={"LOJA"}
         subtitle={"Relátorios e controle operacional controlado"}
         icon={Store}
@@ -38,7 +39,7 @@ function mainContent({ title, children, style }: mainContentProps) {
         iconSize={30}
       />
       <CardButton
-        onPress={goToColdRoom}
+        onPress={goToDocumentRoom}
         title={"DOCUMENTOS"}
         subtitle={"Emissão de PDFs e relatórios de movimentação"}
         icon={FileText}

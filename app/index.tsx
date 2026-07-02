@@ -1,18 +1,11 @@
 import { View, Text, StyleSheet, Button } from "react-native";
-import { router } from "expo-router";
+
 import "react-native-reanimated";
 
 import Header from "@/components/Header";
 import MainContent from "@/components/mainContent";
 
 export default function Homepage() {
-  function goToStore() {
-    router.push(`/storeRoom`);
-  }
-  function goToColdRoom() {
-    router.push(`/coldRoom`);
-  }
-
   return (
     <View>
       <Header
@@ -25,8 +18,6 @@ export default function Homepage() {
         {/* {children} */}
       </Header>
       <MainContent title="OPERAÇÕES" style={styles.mainContent}>
-        {/* <Button title="STORE" onPress={goToStore} />
-        <Button title="COLD ROOM" onPress={goToColdRoom} /> */}
       </MainContent>
     </View>
   );

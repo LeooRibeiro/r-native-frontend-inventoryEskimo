@@ -1,5 +1,8 @@
-import React from 'react'
+import React from "react";
 import { View, Text, StyleSheet, StyleProp, ViewStyle } from "react-native";
+import { Snowflake, Store, FileText } from "lucide-react-native";
+import CardButton from "../components/cardButton";
+import { router } from "expo-router";
 
 type mainContentProps = {
   title: string;
@@ -7,33 +10,62 @@ type mainContentProps = {
   style?: StyleProp<ViewStyle>;
 };
 
+const goToStore = () => router.push("/storeRoom");
+const goToColdRoom = () => router.push("/coldRoom");
 
-
-function mainContent({ title, children, style}: mainContentProps) {
+function mainContent({ title, children, style }: mainContentProps) {
   return (
     <View style={[styles.container, style]}>
       <Text style={styles.title}>{title}</Text>
-      {children}
+      <CardButton
+        onPress={goToStore}
+        title={"CÂMARA FRIA"}
+        subtitle={"Controle e movimentação de estoque refrigerado"}
+        icon={Snowflake}
+        color={"#fff"}
+        iconBgColor={"#4DA7F1"}
+        iconColor={"#ffffff"}
+        iconSize={30}
+      />
+      <CardButton
+        onPress={goToColdRoom}
+        title={"LOJA"}
+        subtitle={"Relátorios e controle operacional controlado"}
+        icon={Store}
+        color={"#fff"}
+        iconBgColor={"#F15E69"}
+        iconColor={"#ffffff"}
+        iconSize={30}
+      />
+      <CardButton
+        onPress={goToColdRoom}
+        title={"DOCUMENTOS"}
+        subtitle={"Emissão de PDFs e relatórios de movimentação"}
+        icon={FileText}
+        color={"#fff"}
+        iconBgColor={"#F1D186"}
+        iconColor={"#ffffff"}
+        iconSize={30}
+      />
     </View>
-  )
-}        
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, 
-    justifyContent: 'center',
+    flex: 1,
+    justifyContent: "center",
     padding: 15,
+    gap: 15,
     backgroundColor: "#fff",
-    },
-    title: {
+  },
+  title: {
     fontSize: 16,
     fontWeight: "bold",
-    },
-    subtitle: {
+  },
+  subtitle: {
     fontSize: 16,
-    },
+  },
 });
 
-
-
-export default mainContent
+export default mainContent;

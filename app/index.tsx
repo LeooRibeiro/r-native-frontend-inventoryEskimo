@@ -1,33 +1,53 @@
+import { View, Text, StyleSheet, Button } from "react-native";
+import { router } from "expo-router";
+import "react-native-reanimated";
 
-import { View, Text, StyleSheet, Button } from 'react-native'
-import { Link, router } from 'expo-router';
-import 'react-native-reanimated';
-
+import Header from "@/components/Header";
+import MainContent from "@/components/mainContent";
 
 export default function Homepage() {
-
-    function goToStore() {
-        router.push(`/storeRoom`)
-    }
-        function goToColdRoom() {
-        router.push(`/storeRoom`)
-    }
+  function goToStore() {
+    router.push(`/storeRoom`);
+  }
+  function goToColdRoom() {
+    router.push(`/coldRoom`);
+  }
 
   return (
-        <View style={ styles.container} className='bg-red-500'>
-          <Text>
-            HOME PAGE
-          </Text>
-            <Button title='STORE' onPress={goToStore} />
-            <Button title='COLD ROOM' onPress={goToColdRoom} />
-        </View>
+    <View>
+      <Header
+        style={styles.header}
+        titleStyle={styles.headerTitle}
+        subtitleStyle={styles.headerSubtitle}
+        title="DISTRIBUIDORA ALVORADA"
+        subtitle="Loja Andromeda - Av. Andromeda, 3940, Bairro Satelite"
+      >
+        {/* {children} */}
+      </Header>
+      <MainContent title="OPERAÇÕES" style={styles.mainContent}>
+        {/* <Button title="STORE" onPress={goToStore} />
+        <Button title="COLD ROOM" onPress={goToColdRoom} /> */}
+      </MainContent>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-    }
-})
+  header: {
+    backgroundColor: "#0074f0",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+  },
+  headerTitle: {
+    marginBottom: 70,
+    color: "#fff",
+    fontFamily: "Monospace",
+  },
+  headerSubtitle: {
+    color: "#fff",
+    fontFamily: "Monospace",
+  },
+  mainContent: {
+    backgroundColor: "fff",
+  },
+});

@@ -2,26 +2,26 @@ import Header from "@/components/Header";
 import { View, Text, StyleSheet } from "react-native";
 import "react-native-reanimated";
 
-export default function coldRoom() {
+export default function SupplyRoom() {
   return (
     <View style={styles.container}>
       <Header
         style={styles.header}
         titleStyle={styles.headerTitle}
         subtitleStyle={styles.headerSubtitle}
-        title="CAMARA FRIA"
-        subtitle="Distribuição dos produtos"
+        title="SUPRIMENTOS"
+        subtitle="Controle de materiais e insumos"
       >
-        <Text>coldRoom Children</Text>
+        <Text>supplyRoom Children</Text>
       </Header>
-      <Text>body coldRoom</Text>
+      <Text>SUPPLY ROOM</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "lightblue",
+    backgroundColor: "lightgreen",
     height: "100%",
   },
   header: {

@@ -10,9 +10,9 @@ type mainContentProps = {
   style?: StyleProp<ViewStyle>;
 };
 
-const goToStore = () => router.push("/storeRoom");
-const goToColdRoom = () => router.push("/coldRoom");
-const goToDocumentRoom = () => router.push("/documentRoom");
+const goToStore = () => router.push("../pages/storeRoom");
+const goToColdRoom = () => router.push("../pages/coldRoom");
+const goToDocumentRoom = () => router.push("../pages/documentRoom");
 
 function mainContent({ title, children, style }: mainContentProps) {
   return (

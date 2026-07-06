@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import Footer from "@/components/footer";
 import { View, Text, StyleSheet } from "react-native";
 import "react-native-reanimated";
 
@@ -15,6 +16,7 @@ export default function DocumentRoom() {
         <Text>documentRoom Children</Text>
       </Header>
       <Text>DOCUMENT ROOM</Text>
+      <Footer />
     </View>
   );
 }

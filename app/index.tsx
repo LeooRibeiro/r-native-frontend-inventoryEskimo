@@ -4,10 +4,11 @@ import "react-native-reanimated";
 
 import Header from "@/components/Header";
 import MainContent from "@/components/mainContent";
+import Footer from "@/components/footer";
 
 export default function Homepage() {
   return (
-    <View>
+    <View style={styles.container}>
       <Header
         style={styles.header}
         titleStyle={styles.headerTitle}
@@ -19,18 +20,19 @@ export default function Homepage() {
       </Header>
       <MainContent title="OPERAÇÕES" style={styles.mainContent}>
       </MainContent>
+      <Footer />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    height: "100%",
+  },
   header: {
     backgroundColor: "#0074f0",
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
   },
   headerTitle: {
-    marginBottom: 70,
     color: "#fff",
     fontFamily: "Monospace",
   },

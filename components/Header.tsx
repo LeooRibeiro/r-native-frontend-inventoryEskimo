@@ -18,9 +18,9 @@ function Header({
   subtitleStyle,
 }: HeaderProps) {
   return (
-    <View style={[styles.container, style]}>
-      <Text style={[styles.title, titleStyle]}>{title}</Text>
-      <Text style={[styles.subtitle, subtitleStyle]}>{subtitle}</Text>
+    <View style={[styles.containerHeader, style]}>
+      <Text style={[styles.titleHeader, titleStyle]}>{title}</Text>
+      <Text style={[styles.subtitleHeader, subtitleStyle]}>{subtitle}</Text>
 
       {children}
     </View>
@@ -28,18 +28,18 @@ function Header({
 }
 
 const styles = StyleSheet.create({
-  container: {
+  containerHeader: {
     width: "100%",
-    height: 180,
-    justifyContent: "flex-start",
+    height: 160,
+    justifyContent: "space-between",
     alignItems: "flex-start",
     padding: 20,
   },
-  title: {
+  titleHeader: {
     fontSize: 24,
     fontWeight: "bold",
   },
-  subtitle: {
+  subtitleHeader: {
     fontSize: 16,
     width: 300,
   },

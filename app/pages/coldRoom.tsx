@@ -1,4 +1,6 @@
 import Header from "@/components/Header";
+import ColdPanel from "@/components/coldPanel";
+import Footer from "@/components/footer";
 import { View, Text, StyleSheet } from "react-native";
 import "react-native-reanimated";
 import CardButton from "@/components/cardButton";
@@ -16,9 +18,9 @@ export default function coldRoom() {
         titleStyle={styles.headerTitle}
         subtitleStyle={styles.headerSubtitle}
         title="CAMARA FRIA"
-        subtitle="Distribuição dos produtos"
+        subtitle=""
       >
-        <Text>coldRoom Children</Text>
+        <ColdPanel totalProducts={0} totalCrates={0} />
       </Header>
       <View style={styles.buttonsContainer}>
         <CardButton
@@ -42,6 +44,7 @@ export default function coldRoom() {
           iconSize={30}
         />
       </View>
+      <Footer />
     </View>
   );
 }
@@ -57,7 +60,6 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   headerTitle: {
-    marginBottom: 70,
     color: "#fff",
     fontFamily: "Monospace",
   },

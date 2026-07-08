@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, StyleProp, ViewStyle, TextStyle } from "react-native";
+import { View, Text, StyleProp, ViewStyle, TextStyle } from "react-native";
 
 type MetricCardProps = {
   label: string;
@@ -12,42 +12,12 @@ type MetricCardProps = {
 
 function MetricCard({ label, value, subtext, subtextColor, style, labelStyle, valueStyle }: MetricCardProps) {
   return (
-    <View style={[styles.container, style]}>
-      <Text style={[styles.label, labelStyle]}>{label}</Text>
-      <Text style={[styles.value, valueStyle]}>{value}</Text>
-      {subtext ? <Text style={[styles.subtext, subtextColor ? { color: subtextColor } : undefined]}>{subtext}</Text> : null}
+    <View className="bg-white rounded-xl p-4 items-start justify-center border-2 border-gray-300" style={style}>
+      <Text className="text-xs text-gray-500 mb-1 text-start" style={labelStyle}>{label}</Text>
+      <Text className="text-2xl font-bold text-gray-600 text-start" style={valueStyle}>{value}</Text>
+      {subtext ? <Text className="text-xs text-green-500 mt-0.5 text-start" style={subtextColor ? { color: subtextColor } : undefined}>{subtext}</Text> : null}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#fff",
-    borderRadius: 12,
-    padding: 16,
-    alignItems: "center",
-    justifyContent: "center",
-    borderWidth: 1,
-    borderColor: "#e5e7eb",
-  },
-  label: {
-    fontSize: 12,
-    color: "#6b7280",
-    marginBottom: 4,
-    textAlign: "center",
-  },
-  value: {
-    fontSize: 24,
-    fontWeight: "700",
-    color: "#111827",
-    textAlign: "center",
-  },
-  subtext: {
-    fontSize: 11,
-    color: "#22c55e",
-    marginTop: 2,
-    textAlign: "center",
-  },
-});
 
 export default MetricCard;

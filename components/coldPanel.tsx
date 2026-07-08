@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text } from "react-native";
 import MetricCard from "./MetricCard";
 
 type ColdPanelProps = {
@@ -15,70 +15,19 @@ function ColdPanel({
   totalCategories = 0,
 }: ColdPanelProps) {
   return (
-    <View style={styles.container}>
-      <View style={styles.tempCard}>
-        <View style={styles.tempRow}>
-          <Text style={styles.tempValue}>{temperature} °C</Text>
-          <View style={styles.statusBadge}>
-            <Text style={styles.statusText}>{temperatureStatus}</Text>
-          </View>
+    <View className="w-full gap-3 mt-4">
+      <View className="bg-white rounded-xl p-5 border-2 border-gray-300">
+        <View className="flex-row items-center justify-between">
+          <Text className="text-4xl font-bold text-gray-600">{temperature} °C</Text>
         </View>
-        <Text style={styles.tempLabel}>Temperatura atual</Text>
+        <Text className="text-sm text-gray-500 mt-1">Temperatura atual</Text>
       </View>
-      <View style={styles.metricsRow}>
-        <MetricCard label="Itens em estoque" value={totalItems} style={styles.metric} />
-        <MetricCard label="Categorias" value={totalCategories} style={styles.metric} />
+      <View className="flex-row gap-3">
+        <MetricCard label="Itens em estoque" value={totalItems} style={{ flex: 1 }} />
+        <MetricCard label="Categorias" value={totalCategories} style={{ flex: 1 }} />
       </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    gap: 12,
-    marginTop: 16,
-  },
-  tempCard: {
-    backgroundColor: "#fff",
-    borderRadius: 12,
-    padding: 20,
-    borderWidth: 1,
-    borderColor: "#e5e7eb",
-  },
-  tempRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  tempValue: {
-    fontSize: 36,
-    fontWeight: "700",
-    color: "#2563eb",
-  },
-  statusBadge: {
-    borderRadius: 20,
-    paddingHorizontal: 14,
-    paddingVertical: 6,
-    backgroundColor: "#dcfce7",
-  },
-  statusText: {
-    fontSize: 13,
-    fontWeight: "600",
-    color: "#166534",
-  },
-  tempLabel: {
-    fontSize: 13,
-    color: "#6b7280",
-    marginTop: 4,
-  },
-  metricsRow: {
-    flexDirection: "row",
-    gap: 12,
-  },
-  metric: {
-    flex: 1,
-  },
-});
 
 export default ColdPanel;

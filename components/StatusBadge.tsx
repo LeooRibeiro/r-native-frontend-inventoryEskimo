@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text } from "react-native";
 
 type StatusBadgeProps = {
   label: string;
@@ -6,35 +6,11 @@ type StatusBadgeProps = {
 
 function StatusBadge({ label }: StatusBadgeProps) {
   return (
-    <View style={styles.container}>
-      <View style={styles.dot} />
-      <Text style={styles.label}>{label}</Text>
+    <View className="flex-row items-center rounded-full px-3 py-1.5 bg-green-50 self-start">
+      <View className="w-2 h-2 rounded-full bg-green-800 mr-1.5" />
+      <Text className="text-sm font-semibold text-green-800">{label}</Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    alignItems: "center",
-    borderRadius: 20,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    backgroundColor: "#dcfce7",
-    alignSelf: "flex-start",
-  },
-  dot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: "#166534",
-    marginRight: 6,
-  },
-  label: {
-    fontSize: 13,
-    fontWeight: "600",
-    color: "#166534",
-  },
-});
 
 export default StatusBadge;

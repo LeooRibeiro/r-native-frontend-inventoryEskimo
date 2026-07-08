@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, StyleProp, ViewStyle, TextStyle } from "react-native";
+import { View, Text, StyleProp, ViewStyle, TextStyle } from "react-native";
 
 type HeaderProps = {
   title: string;
@@ -18,31 +18,12 @@ function Header({
   subtitleStyle,
 }: HeaderProps) {
   return (
-    <View style={[styles.container, style]}>
-      <Text style={[styles.title, titleStyle]}>{title}</Text>
-      {subtitle ? <Text style={[styles.subtitle, subtitleStyle]}>{subtitle}</Text> : null}
+    <View className="w-full p-5 border-b-2 border-gray-300" style={style}>
+      <Text className="text-2xl font-bold text-gray-600" style={titleStyle}>{title}</Text>
+      {subtitle ? <Text className="text-sm text-gray-600 mt-1" style={subtitleStyle}>{subtitle}</Text> : null}
       {children}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    paddingHorizontal: 20,
-    paddingTop: 24,
-    paddingBottom: 20,
-  },
-  title: {
-    fontSize: 22,
-    fontWeight: "700",
-    color: "#fff",
-  },
-  subtitle: {
-    fontSize: 14,
-    color: "rgba(255,255,255,0.8)",
-    marginTop: 4,
-  },
-});
 
 export default Header;

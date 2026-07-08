@@ -3,7 +3,7 @@ import Footer from "@/components/footer";
 import MetricCard from "@/components/MetricCard";
 import StatusBadge from "@/components/StatusBadge";
 import CardButton from "@/components/cardButton";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { FileText, BarChart3 } from "lucide-react-native";
 import { router } from "expo-router";
@@ -17,28 +17,28 @@ export default function StoreRoom() {
   const insets = useSafeAreaInsets();
 
   return (
-    <View style={[styles.container, { paddingTop: insets.top }]}>
-      <Header style={styles.header} title="Loja">
-        <View style={styles.statusRow}>
+    <View className="flex-1 bg-gray-100" style={{ paddingTop: insets.top }}>
+      <Header style={{ backgroundColor: "#0074f0" }} title="Loja">
+        <View className="flex-row justify-between items-center mt-3">
           <View>
-            <Text style={styles.operationLabel}>Operação atual</Text>
-            <Text style={styles.operationValue}>Turno em andamento</Text>
+            <Text className="text-xs text-white/70">Operação atual</Text>
+            <Text className="text-base font-semibold text-white mt-0.5">Turno em andamento</Text>
           </View>
           <StatusBadge label="Ativa" />
         </View>
-        <View style={styles.metricsRow}>
-          <MetricCard label="Vendas" value={0} style={styles.metric} />
-          <MetricCard label="Reposições" value={0} style={styles.metric} />
-          <MetricCard label="SKUs" value={0} style={styles.metric} />
+        <View className="flex-row gap-2.5 mt-4">
+          <MetricCard label="Vendas" value={0} style={{ flex: 1 }} />
+          <MetricCard label="Reposições" value={0} style={{ flex: 1 }} />
+          <MetricCard label="SKUs" value={0} style={{ flex: 1 }} />
         </View>
       </Header>
       <ScrollView
-        style={styles.scrollView}
-        contentContainerStyle={styles.scrollContent}
+        className="flex-1"
+        contentContainerStyle={{ padding: 20, paddingBottom: 24, gap: 16 }}
         showsVerticalScrollIndicator={false}
       >
-        <Text style={styles.sectionTitle}>Relatórios</Text>
-        <View style={styles.cardsContainer}>
+        <Text className="text-sm font-bold text-gray-500 tracking-wider uppercase">Relatórios</Text>
+        <View className="gap-3">
           {reports.map((r) => {
             const Icon = r.icon;
             return (
@@ -62,55 +62,3 @@ export default function StoreRoom() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#f3f4f6",
-  },
-  header: {
-    backgroundColor: "#0074f0",
-  },
-  statusRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginTop: 12,
-  },
-  operationLabel: {
-    fontSize: 12,
-    color: "rgba(255,255,255,0.7)",
-  },
-  operationValue: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "#fff",
-    marginTop: 2,
-  },
-  metricsRow: {
-    flexDirection: "row",
-    gap: 10,
-    marginTop: 16,
-  },
-  metric: {
-    flex: 1,
-  },
-  scrollView: {
-    flex: 1,
-  },
-  scrollContent: {
-    padding: 20,
-    paddingBottom: 24,
-    gap: 16,
-  },
-  sectionTitle: {
-    fontSize: 14,
-    fontWeight: "700",
-    color: "#6b7280",
-    letterSpacing: 1,
-    textTransform: "uppercase",
-  },
-  cardsContainer: {
-    gap: 12,
-  },
-});

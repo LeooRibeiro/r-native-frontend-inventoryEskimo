@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/footer";
 import MetricCard from "@/components/MetricCard";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BarChart3 } from "lucide-react-native";
 
@@ -18,66 +18,66 @@ export default function RelatorioMensal() {
   const insets = useSafeAreaInsets();
 
   return (
-    <View style={[styles.container, { paddingTop: insets.top }]}>
+    <View className="flex-1 bg-gray-100" style={{ paddingTop: insets.top }}>
       <Header
-        style={styles.header}
+        style={{ backgroundColor: "#0074f0" }}
         title="Relatório Mensal"
         subtitle="--"
       />
       <ScrollView
-        style={styles.scrollView}
-        contentContainerStyle={styles.scrollContent}
+        className="flex-1"
+        contentContainerStyle={{ padding: 20, paddingBottom: 24, gap: 16 }}
         showsVerticalScrollIndicator={false}
       >
-        <View style={styles.metricsRow}>
-          <MetricCard label="Entradas no mês" value={0} style={styles.metric} />
-          <MetricCard label="Saídas no mês" value={0} style={styles.metric} />
+        <View className="flex-row gap-2.5">
+          <MetricCard label="Entradas no mês" value={0} style={{ flex: 1 }} />
+          <MetricCard label="Saídas no mês" value={0} style={{ flex: 1 }} />
         </View>
 
-        <View style={styles.chartCard}>
-          <View style={styles.chartHeader}>
+        <View className="bg-white rounded-xl p-5 border border-gray-200">
+          <View className="flex-row items-center gap-1.5 mb-4">
             <BarChart3 size={16} color="#6b7280" />
-            <Text style={styles.chartTitle}>Movimentações</Text>
+            <Text className="text-sm font-semibold text-gray-700">Movimentações</Text>
           </View>
-          <View style={styles.chartRow}>
+          <View className="flex-row items-end gap-0.5 h-28">
             {chartDays.map((i) => (
-              <View key={i} style={styles.miniBarWrapper}>
-                <View style={[styles.miniBar, { height: 4 }]} />
+              <View key={i} className="flex-1 items-center justify-end">
+                <View className="w-full max-w-2 bg-blue-500 rounded-sm" style={{ height: 4, minHeight: 4 }} />
               </View>
             ))}
           </View>
-          <View style={styles.chartFooter}>
+          <View className="flex-row justify-between mt-2">
             {chartFooterLabels.map((l) => (
-              <Text key={l} style={styles.chartFooterText}>{l}</Text>
+              <Text key={l} className="text-xs text-gray-400">{l}</Text>
             ))}
           </View>
         </View>
 
-        <Text style={styles.sectionTitle}>Mais movimentados</Text>
+        <Text className="text-sm font-bold text-gray-500 tracking-wider -mb-1 uppercase">Mais movimentados</Text>
         {topProducts.length > 0 && (
-          <View style={styles.rankingList}>
+          <View className="bg-white rounded-xl border border-gray-200 overflow-hidden">
             {topProducts.map((p) => (
-              <View key={p.rank} style={styles.rankingItem}>
-                <View style={styles.rankBadge}>
-                  <Text style={styles.rankText}>{p.rank}</Text>
+              <View key={p.rank} className="flex-row items-center p-3.5 border-b border-gray-100">
+                <View className="w-7 h-7 rounded-lg bg-gray-100 justify-center items-center mr-3">
+                  <Text className="text-sm font-bold text-gray-500">{p.rank}</Text>
                 </View>
-                <View style={styles.rankInfo}>
-                  <Text style={styles.rankName}>{p.name}</Text>
-                  <Text style={styles.rankQty}>{p.qty}</Text>
+                <View className="flex-1">
+                  <Text className="text-sm font-medium text-gray-900">{p.name}</Text>
+                  <Text className="text-xs text-gray-400 mt-0.5">{p.qty}</Text>
                 </View>
-                <Text style={[styles.rankChange, { color: p.changeColor }]}>{p.change}</Text>
+                <Text className="text-sm font-bold" style={{ color: p.changeColor }}>{p.change}</Text>
               </View>
             ))}
           </View>
         )}
 
-        <Text style={styles.sectionTitle}>Resumo estatístico</Text>
+        <Text className="text-sm font-bold text-gray-500 tracking-wider -mb-1 uppercase">Resumo estatístico</Text>
         {summary.length > 0 && (
-          <View style={styles.summaryGrid}>
+          <View className="flex-row flex-wrap gap-2.5">
             {summary.map((s) => (
-              <View key={s.label} style={styles.summaryCard}>
-                <Text style={styles.summaryLabel}>{s.label}</Text>
-                <Text style={styles.summaryValue}>{s.value}</Text>
+              <View key={s.label} className="w-1/2 bg-white rounded-xl p-4 border border-gray-200">
+                <Text className="text-xs text-gray-500 mb-1">{s.label}</Text>
+                <Text className="text-xl font-bold text-gray-900">{s.value}</Text>
               </View>
             ))}
           </View>
@@ -87,54 +87,3 @@ export default function RelatorioMensal() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#f3f4f6" },
-  header: { backgroundColor: "#0074f0" },
-  scrollView: { flex: 1 },
-  scrollContent: { padding: 20, paddingBottom: 24, gap: 16 },
-  metricsRow: { flexDirection: "row", gap: 10 },
-  metric: { flex: 1 },
-  chartCard: {
-    backgroundColor: "#fff", borderRadius: 12, padding: 20,
-    borderWidth: 1, borderColor: "#e5e7eb",
-  },
-  chartHeader: { flexDirection: "row", alignItems: "center", gap: 6, marginBottom: 16 },
-  chartTitle: { fontSize: 14, fontWeight: "600", color: "#374151" },
-  chartRow: {
-    flexDirection: "row", alignItems: "flex-end", gap: 3, height: 110,
-  },
-  miniBarWrapper: { flex: 1, alignItems: "center", justifyContent: "flex-end" },
-  miniBar: { width: "100%", maxWidth: 8, backgroundColor: "#3b82f6", borderRadius: 2, minHeight: 4 },
-  chartFooter: {
-    flexDirection: "row", justifyContent: "space-between", marginTop: 8,
-  },
-  chartFooterText: { fontSize: 10, color: "#9ca3af" },
-  sectionTitle: { fontSize: 14, fontWeight: "700", color: "#6b7280", letterSpacing: 1, marginBottom: -4 },
-  rankingList: {
-    backgroundColor: "#fff", borderRadius: 12,
-    borderWidth: 1, borderColor: "#e5e7eb", overflow: "hidden",
-  },
-  rankingItem: {
-    flexDirection: "row", alignItems: "center", padding: 14,
-    borderBottomWidth: 1, borderBottomColor: "#f3f4f6",
-  },
-  rankBadge: {
-    width: 28, height: 28, borderRadius: 8, backgroundColor: "#f3f4f6",
-    justifyContent: "center", alignItems: "center", marginRight: 12,
-  },
-  rankText: { fontSize: 13, fontWeight: "700", color: "#6b7280" },
-  rankInfo: { flex: 1 },
-  rankName: { fontSize: 14, fontWeight: "500", color: "#111827" },
-  rankQty: { fontSize: 12, color: "#9ca3af", marginTop: 2 },
-  rankChange: { fontSize: 13, fontWeight: "700" },
-  summaryGrid: {
-    flexDirection: "row", flexWrap: "wrap", gap: 10,
-  },
-  summaryCard: {
-    width: "48%", backgroundColor: "#fff", borderRadius: 12, padding: 16,
-    borderWidth: 1, borderColor: "#e5e7eb",
-  },
-  summaryLabel: { fontSize: 12, color: "#6b7280", marginBottom: 4 },
-  summaryValue: { fontSize: 20, fontWeight: "700", color: "#111827" },
-});

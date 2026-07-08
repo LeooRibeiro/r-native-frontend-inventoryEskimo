@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/footer";
 import MetricCard from "@/components/MetricCard";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Package } from "lucide-react-native";
 
@@ -19,55 +19,55 @@ export default function RelatorioDia() {
   const insets = useSafeAreaInsets();
 
   return (
-    <View style={[styles.container, { paddingTop: insets.top }]}>
+    <View className="flex-1 bg-gray-100" style={{ paddingTop: insets.top }}>
       <Header
-        style={styles.header}
+        style={{ backgroundColor: "#0074f0" }}
         title="Relatório do Dia"
         subtitle="--"
       />
       <ScrollView
-        style={styles.scrollView}
-        contentContainerStyle={styles.scrollContent}
+        className="flex-1"
+        contentContainerStyle={{ padding: 20, paddingBottom: 24, gap: 16 }}
         showsVerticalScrollIndicator={false}
       >
-        <View style={styles.metricsRow}>
-          <MetricCard label="Entradas" value={0} style={styles.metric} />
-          <MetricCard label="Saídas" value={0} style={styles.metric} />
-          <MetricCard label="Transfer." value={0} style={styles.metric} />
+        <View className="flex-row gap-2.5">
+          <MetricCard label="Entradas" value={0} style={{ flex: 1 }} />
+          <MetricCard label="Saídas" value={0} style={{ flex: 1 }} />
+          <MetricCard label="Transfer." value={0} style={{ flex: 1 }} />
         </View>
 
-        <View style={styles.totalBar}>
+        <View className="flex-row items-center gap-1.5 bg-white rounded-xl p-3.5 border border-gray-200">
           <Package size={16} color="#6b7280" />
-          <Text style={styles.totalText}>0 operações</Text>
-          <Text style={styles.totalDot}>·</Text>
-          <Text style={styles.totalText}>0 unidades</Text>
+          <Text className="text-sm font-semibold text-gray-700">0 operações</Text>
+          <Text className="text-sm text-gray-300">·</Text>
+          <Text className="text-sm font-semibold text-gray-700">0 unidades</Text>
         </View>
 
-        <View style={styles.chartPlaceholder}>
-          <View style={styles.chartRow}>
+        <View className="bg-white rounded-xl p-5 border border-gray-200 items-center">
+          <View className="flex-row items-end gap-6 h-36">
             {chartItems.map((item) => (
-              <View key={item.label} style={styles.chartBarWrapper}>
-                <View style={[styles.chartBar, { height: 8, backgroundColor: item.color }]} />
-                <Text style={styles.chartLabel}>{item.label}</Text>
+              <View key={item.label} className="items-center gap-2">
+                <View className="w-12 rounded-lg" style={{ height: 8, backgroundColor: item.color }} />
+                <Text className="text-xs font-medium text-gray-500">{item.label}</Text>
               </View>
             ))}
           </View>
         </View>
 
-        <Text style={styles.sectionTitle}>Operações realizadas</Text>
+        <Text className="text-sm font-bold text-gray-500 tracking-wider -mb-1 uppercase">Operações realizadas</Text>
         {operations.length > 0 && (
-          <View style={styles.operationsList}>
+          <View className="bg-white rounded-xl border border-gray-200 overflow-hidden">
             {operations.map((op, i) => (
-              <View key={i} style={styles.opItem}>
-                <View style={styles.opIcon}>
+              <View key={i} className="flex-row items-center p-3.5 border-b border-gray-100">
+                <View className="w-9 h-9 rounded-lg bg-gray-100 justify-center items-center mr-3">
                   <Package size={18} color="#6b7280" />
                 </View>
-                <View style={styles.opInfo}>
-                  <Text style={styles.opName}>{op.name}</Text>
-                  <Text style={styles.opMeta}>{op.person} · {op.time}</Text>
+                <View className="flex-1">
+                  <Text className="text-sm font-medium text-gray-900">{op.name}</Text>
+                  <Text className="text-xs text-gray-400 mt-0.5">{op.person} · {op.time}</Text>
                 </View>
-                <View style={[styles.opBadge, op.qty.startsWith("+") ? styles.opBadgeIn : styles.opBadgeOut]}>
-                  <Text style={[styles.opBadgeText, op.qty.startsWith("+") ? styles.opBadgeTextIn : styles.opBadgeTextOut]}>
+                <View className={`rounded-lg px-2.5 py-1 ${op.qty.startsWith("+") ? "bg-green-50" : "bg-pink-50"}`}>
+                  <Text className={`text-sm font-bold ${op.qty.startsWith("+") ? "text-green-800" : "text-pink-800"}`}>
                     {op.qty} {op.unit}
                   </Text>
                 </View>
@@ -80,51 +80,3 @@ export default function RelatorioDia() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#f3f4f6" },
-  header: { backgroundColor: "#0074f0" },
-  scrollView: { flex: 1 },
-  scrollContent: { padding: 20, paddingBottom: 24, gap: 16 },
-  metricsRow: { flexDirection: "row", gap: 10 },
-  metric: { flex: 1 },
-  totalBar: {
-    flexDirection: "row", alignItems: "center", gap: 6,
-    backgroundColor: "#fff", borderRadius: 10, padding: 14,
-    borderWidth: 1, borderColor: "#e5e7eb",
-  },
-  totalText: { fontSize: 14, fontWeight: "600", color: "#374151" },
-  totalDot: { fontSize: 14, color: "#d1d5db" },
-  chartPlaceholder: {
-    backgroundColor: "#fff", borderRadius: 12, padding: 20,
-    borderWidth: 1, borderColor: "#e5e7eb", alignItems: "center",
-  },
-  chartRow: {
-    flexDirection: "row", alignItems: "flex-end", gap: 24, height: 140,
-  },
-  chartBarWrapper: { alignItems: "center", gap: 8 },
-  chartBar: { width: 48, borderRadius: 6, minHeight: 8 },
-  chartLabel: { fontSize: 12, fontWeight: "500", color: "#6b7280" },
-  sectionTitle: { fontSize: 14, fontWeight: "700", color: "#6b7280", letterSpacing: 1, marginBottom: -4 },
-  operationsList: {
-    backgroundColor: "#fff", borderRadius: 12,
-    borderWidth: 1, borderColor: "#e5e7eb", overflow: "hidden",
-  },
-  opItem: {
-    flexDirection: "row", alignItems: "center", padding: 14,
-    borderBottomWidth: 1, borderBottomColor: "#f3f4f6",
-  },
-  opIcon: {
-    width: 36, height: 36, borderRadius: 8, backgroundColor: "#f3f4f6",
-    justifyContent: "center", alignItems: "center", marginRight: 12,
-  },
-  opInfo: { flex: 1 },
-  opName: { fontSize: 14, fontWeight: "500", color: "#111827" },
-  opMeta: { fontSize: 12, color: "#9ca3af", marginTop: 2 },
-  opBadge: { borderRadius: 8, paddingHorizontal: 10, paddingVertical: 4 },
-  opBadgeIn: { backgroundColor: "#dcfce7" },
-  opBadgeOut: { backgroundColor: "#fce7f3" },
-  opBadgeText: { fontSize: 13, fontWeight: "700" },
-  opBadgeTextIn: { color: "#166534" },
-  opBadgeTextOut: { color: "#9d174d" },
-});

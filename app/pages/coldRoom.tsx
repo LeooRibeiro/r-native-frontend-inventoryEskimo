@@ -1,49 +1,56 @@
 import Header from "@/components/Header";
 import ColdPanel from "@/components/coldPanel";
 import Footer from "@/components/footer";
-import { View, Text, StyleSheet } from "react-native";
-import "react-native-reanimated";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CardButton from "@/components/cardButton";
 import { router } from "expo-router";
-import { Package, Undo2 } from "lucide-react-native";
+import { Package, ArrowRightFromLine } from "lucide-react-native";
 
-const goToSupplyRoom = () => router.push("/pages/supplyRoom");
-const goToRetreatRoom = () => router.push("/pages/retreatRoom");
+const actions = [
+  { route: "/pages/supplyRoom", title: "Abastecimento Câmara", subtitle: "Registrar entrada de produtos na câmara fria.", icon: Package, bg: "#4CAF50" },
+  { route: "/pages/retreatRoom", title: "Abastecimento Loja", subtitle: "Transferir produtos da câmara fria para a loja.", icon: ArrowRightFromLine, bg: "#0074f0" },
+];
 
-export default function coldRoom() {
+export default function ColdRoom() {
+  const insets = useSafeAreaInsets();
+
   return (
-    <View style={styles.container}>
-      <Header
-        style={styles.header}
-        titleStyle={styles.headerTitle}
-        subtitleStyle={styles.headerSubtitle}
-        title="CAMARA FRIA"
-        subtitle=""
-      >
-        <ColdPanel totalProducts={0} totalCrates={0} />
+    <View style={[styles.container, { paddingTop: insets.top }]}>
+      <Header style={styles.header} title="Câmara Fria">
+        <ColdPanel
+          temperature="--"
+          temperatureStatus="--"
+          totalItems={0}
+          totalCategories={0}
+        />
       </Header>
-      <View style={styles.buttonsContainer}>
-        <CardButton
-          onPress={goToSupplyRoom}
-          title={"SUPRIMENTOS"}
-          subtitle={"Controle de materiais e insumos"}
-          icon={Package}
-          color={"#fff"}
-          iconBgColor={"#4CAF50"}
-          iconColor={"#ffffff"}
-          iconSize={30}
-        />
-        <CardButton
-          onPress={goToRetreatRoom}
-          title={"RETIRADA"}
-          subtitle={"Controle de retirada de produtos"}
-          icon={Undo2}
-          color={"#fff"}
-          iconBgColor={"#FF7043"}
-          iconColor={"#ffffff"}
-          iconSize={30}
-        />
-      </View>
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        <Text style={styles.sectionTitle}>Ações</Text>
+        <View style={styles.cardsContainer}>
+          {actions.map((a) => {
+            const Icon = a.icon;
+            return (
+              <CardButton
+                key={a.route}
+                onPress={() => router.push(a.route as any)}
+                title={a.title}
+                subtitle={a.subtitle}
+                footerText="--"
+                icon={Icon}
+                color="#fff"
+                iconBgColor={a.bg}
+                iconColor="#ffffff"
+                iconSize={24}
+              />
+            );
+          })}
+        </View>
+      </ScrollView>
       <Footer />
     </View>
   );
@@ -51,24 +58,28 @@ export default function coldRoom() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "lightblue",
-    height: "100%",
+    flex: 1,
+    backgroundColor: "#f3f4f6",
   },
   header: {
     backgroundColor: "#0074f0",
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
   },
-  headerTitle: {
-    color: "#fff",
-    fontFamily: "Monospace",
+  scrollView: {
+    flex: 1,
   },
-  headerSubtitle: {
-    color: "#fff",
-    fontFamily: "Monospace",
+  scrollContent: {
+    padding: 20,
+    paddingBottom: 24,
+    gap: 16,
   },
-  buttonsContainer: {
-    padding: 15,
-    gap: 15,
+  sectionTitle: {
+    fontSize: 14,
+    fontWeight: "700",
+    color: "#6b7280",
+    letterSpacing: 1,
+    textTransform: "uppercase",
+  },
+  cardsContainer: {
+    gap: 12,
   },
 });

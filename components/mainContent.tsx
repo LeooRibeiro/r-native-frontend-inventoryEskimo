@@ -1,52 +1,47 @@
 import React from "react";
 import { View, Text, StyleSheet, StyleProp, ViewStyle } from "react-native";
 import { Snowflake, Store, FileText } from "lucide-react-native";
-import CardButton from "../components/cardButton";
+import CardButton from "./cardButton";
 import { router } from "expo-router";
 
-type mainContentProps = {
+type MainContentProps = {
   title: string;
-  children?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
 };
 
-const goToStore = () => router.push("../pages/storeRoom");
-const goToColdRoom = () => router.push("../pages/coldRoom");
-const goToDocumentRoom = () => router.push("../pages/documentRoom");
-
-function mainContent({ title, children, style }: mainContentProps) {
+function MainContent({ title, style }: MainContentProps) {
   return (
     <View style={[styles.container, style]}>
       <Text style={styles.title}>{title}</Text>
       <CardButton
-        onPress={goToColdRoom}
-        title={"CÂMARA FRIA"}
-        subtitle={"Controle e movimentação de estoque refrigerado"}
+        onPress={() => router.push("/pages/coldRoom")}
+        title="Câmara Fria"
+        subtitle="Controle e movimentação de estoque refrigerado."
         icon={Snowflake}
-        color={"#fff"}
-        iconBgColor={"#4DA7F1"}
-        iconColor={"#ffffff"}
-        iconSize={30}
+        color="#fff"
+        iconBgColor="#4DA7F1"
+        iconColor="#ffffff"
+        iconSize={26}
       />
       <CardButton
-        onPress={goToStore}
-        title={"LOJA"}
-        subtitle={"Relátorios e controle operacional controlado"}
+        onPress={() => router.push("/pages/storeRoom")}
+        title="Loja"
+        subtitle="Relatórios e controle operacional."
         icon={Store}
-        color={"#fff"}
-        iconBgColor={"#F15E69"}
-        iconColor={"#ffffff"}
-        iconSize={30}
+        color="#fff"
+        iconBgColor="#F15E69"
+        iconColor="#ffffff"
+        iconSize={26}
       />
       <CardButton
-        onPress={goToDocumentRoom}
-        title={"DOCUMENTOS"}
-        subtitle={"Emissão de PDFs e relatórios de movimentação"}
+        onPress={() => router.push("/pages/documentRoom")}
+        title="Gerar Documentos"
+        subtitle="Emissão de PDFs e relatórios."
         icon={FileText}
-        color={"#fff"}
-        iconBgColor={"#F1D186"}
-        iconColor={"#ffffff"}
-        iconSize={30}
+        color="#fff"
+        iconBgColor="#F1D186"
+        iconColor="#ffffff"
+        iconSize={26}
       />
     </View>
   );
@@ -54,18 +49,19 @@ function mainContent({ title, children, style }: mainContentProps) {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
-    padding: 15,
-    gap: 15,
-    backgroundColor: "#fff",
+    padding: 20,
+    gap: 12,
+    backgroundColor: "#f3f4f6",
+    flex: 1,
   },
   title: {
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  subtitle: {
-    fontSize: 16,
+    fontSize: 14,
+    fontWeight: "700",
+    color: "#6b7280",
+    letterSpacing: 1,
+    marginBottom: 4,
+    textTransform: "uppercase",
   },
 });
 
-export default mainContent;
+export default MainContent;

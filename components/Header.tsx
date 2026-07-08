@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, StyleProp, ViewStyle, TextStyle } from "react-n
 
 type HeaderProps = {
   title: string;
-  subtitle: string;
+  subtitle?: string;
   children?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
   titleStyle?: StyleProp<TextStyle>;
@@ -18,30 +18,30 @@ function Header({
   subtitleStyle,
 }: HeaderProps) {
   return (
-    <View style={[styles.containerHeader, style]}>
-      <Text style={[styles.titleHeader, titleStyle]}>{title}</Text>
-      <Text style={[styles.subtitleHeader, subtitleStyle]}>{subtitle}</Text>
-
+    <View style={[styles.container, style]}>
+      <Text style={[styles.title, titleStyle]}>{title}</Text>
+      {subtitle ? <Text style={[styles.subtitle, subtitleStyle]}>{subtitle}</Text> : null}
       {children}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  containerHeader: {
+  container: {
     width: "100%",
-    height: 160,
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingTop: 24,
+    paddingBottom: 20,
   },
-  titleHeader: {
-    fontSize: 24,
-    fontWeight: "bold",
+  title: {
+    fontSize: 22,
+    fontWeight: "700",
+    color: "#fff",
   },
-  subtitleHeader: {
-    fontSize: 16,
-    width: 300,
+  subtitle: {
+    fontSize: 14,
+    color: "rgba(255,255,255,0.8)",
+    marginTop: 4,
   },
 });
 

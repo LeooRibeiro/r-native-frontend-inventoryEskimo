@@ -4,6 +4,7 @@ import { LucideIcon, ChevronRight } from "lucide-react-native";
 type CardButtonProps = {
   title: string;
   subtitle: string;
+  footerText?: string;
   icon: LucideIcon;
   color: string;
   iconBgColor: string;
@@ -11,6 +12,7 @@ type CardButtonProps = {
   iconSize: number;
   titleStyle?: StyleProp<TextStyle>;
   subtitleStyle?: StyleProp<TextStyle>;
+  footerStyle?: StyleProp<TextStyle>;
   iconWrapperStyle?: StyleProp<ViewStyle>;
   onPress?: () => void;
   style?: StyleProp<ViewStyle>;
@@ -19,6 +21,7 @@ type CardButtonProps = {
 function CardButton({
   title,
   subtitle,
+  footerText,
   icon: Icon,
   color,
   iconBgColor,
@@ -26,6 +29,7 @@ function CardButton({
   iconSize,
   titleStyle,
   subtitleStyle,
+  footerStyle,
   iconWrapperStyle,
   onPress,
   style,
@@ -42,8 +46,9 @@ function CardButton({
       <View style={styles.textWrapper}>
         <Text style={[styles.title, titleStyle]}>{title}</Text>
         <Text style={[styles.subtitle, subtitleStyle]}>{subtitle}</Text>
+        {footerText ? <Text style={[styles.footer, footerStyle]}>{footerText}</Text> : null}
       </View>
-      <ChevronRight size={20} color="#333" style={styles.chevron} />
+      <ChevronRight size={20} color="#9ca3af" />
     </TouchableOpacity>
   );
 }
@@ -54,18 +59,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 12,
     width: "100%",
-    height: 80,
-    padding: 15,
+    padding: 16,
     borderWidth: 1,
-    borderColor: "#ccc",
-    shadowColor: "#333",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    borderColor: "#e5e7eb",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.06,
+    shadowRadius: 4,
+    elevation: 2,
   },
   iconWrapper: {
     width: 44,
@@ -78,13 +79,20 @@ const styles = StyleSheet.create({
   textWrapper: {
     flex: 1,
   },
-  title: {},
+  title: {
+    fontSize: 15,
+    fontWeight: "700",
+    color: "#111827",
+  },
   subtitle: {
-    width: "80%",
+    fontSize: 13,
+    color: "#6b7280",
     marginTop: 2,
   },
-  chevron: {
-    marginLeft: 8,
+  footer: {
+    fontSize: 12,
+    color: "#9ca3af",
+    marginTop: 4,
   },
 });
 

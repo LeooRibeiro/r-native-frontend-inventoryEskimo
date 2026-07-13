@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleProp, ViewStyle } from "react-native";
-import { Snowflake, Store, FileText } from "lucide-react-native";
+import { Snowflake, Store, Building2 } from "lucide-react-native";
 import CardButton from "./cardButton";
 import { router } from "expo-router";
 
@@ -34,10 +34,10 @@ function MainContent({ title, style }: MainContentProps) {
         iconSize={26}
       />
       <CardButton
-        onPress={() => router.push("/pages/documentRoom")}
-        title="Gerar Documentos"
-        subtitle="Emissão de PDFs e relatórios."
-        icon={FileText}
+        onPress={() => router.push("/pages/adminRoom")}
+        title="Administrativo"
+        subtitle="Gestão de relatórios e validações da fábrica."
+        icon={Building2}
         color="#fff"
         iconBgColor="#F1D186"
         iconColor="#ffffff"

@@ -19,10 +19,8 @@ export default function ColdRoom() {
     <View className="flex-1 bg-gray-100" style={{ paddingTop: insets.top }}>
       <Header style={{ backgroundColor: "#fff" }} title="Câmara Fria">
         <ColdPanel
-          temperature="--"
-          temperatureStatus="--"
           totalItems={0}
-          totalCategories={0}
+          totalAvarias={0}
         />
       </Header>
       <ScrollView

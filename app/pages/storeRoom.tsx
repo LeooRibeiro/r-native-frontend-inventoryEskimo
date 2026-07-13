@@ -1,16 +1,15 @@
 import Header from "@/components/Header";
 import Footer from "@/components/footer";
 import MetricCard from "@/components/MetricCard";
-import StatusBadge from "@/components/StatusBadge";
 import CardButton from "@/components/cardButton";
 import { View, Text, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { FileText, BarChart3 } from "lucide-react-native";
+import { Clock, BarChart3 } from "lucide-react-native";
 import { router } from "expo-router";
 
 const reports = [
-  { route: "/pages/store/relatorioDia", title: "Relatório do Dia", subtitle: "Resumo de entradas, saídas e operações de hoje.", icon: FileText, bg: "#0074f0" },
-  { route: "/pages/store/relatorioMensal", title: "Relatório Mensal", subtitle: "Métricas consolidadas e produtos mais movimentados.", icon: BarChart3, bg: "#8B5CF6" },
+  { route: "/pages/store/clockLogin", title: "Ponto Eletrônico", subtitle: "Registrar entrada e saída", icon: Clock, bg: "#0074f0" },
+  { route: "/pages/store/monthlyReport", title: "Relatório Mensal", subtitle: "Relátorio geral", icon: BarChart3, bg: "#8B5CF6" },
 ];
 
 export default function StoreRoom() {
@@ -18,18 +17,18 @@ export default function StoreRoom() {
 
   return (
     <View className="flex-1 bg-gray-100" style={{ paddingTop: insets.top }}>
-      <Header style={{ backgroundColor: "#0074f0" }} title="Loja">
-        <View className="flex-row justify-between items-center mt-3">
-          <View>
-            <Text className="text-xs text-white/70">Operação atual</Text>
-            <Text className="text-base font-semibold text-white mt-0.5">Turno em andamento</Text>
+      <Header style={{ backgroundColor: "#fff" }} title="">
+        <View className="w-full gap-3 mt-4">
+        
+            <View className="flex-row items-center justify-between">
+              <Text className="text-3xl font-bold text-gray-600">Loja</Text>
+            </View>
+            <Text className="text-sm text-gray-500 mt-1">Operação atual</Text>
+
+          <View className="flex-row gap-3">
+            <MetricCard label="Itens em freezer" value={0} style={{ flex: 1 }} />
+            <MetricCard label="Reposições" value={0} style={{ flex: 1 }} />
           </View>
-          <StatusBadge label="Ativa" />
-        </View>
-        <View className="flex-row gap-2.5 mt-4">
-          <MetricCard label="Vendas" value={0} style={{ flex: 1 }} />
-          <MetricCard label="Reposições" value={0} style={{ flex: 1 }} />
-          <MetricCard label="SKUs" value={0} style={{ flex: 1 }} />
         </View>
       </Header>
       <ScrollView
@@ -47,7 +46,7 @@ export default function StoreRoom() {
                 onPress={() => router.push(r.route as any)}
                 title={r.title}
                 subtitle={r.subtitle}
-                footerText="--"
+                footerText=""
                 icon={Icon}
                 color="#fff"
                 iconBgColor={r.bg}
